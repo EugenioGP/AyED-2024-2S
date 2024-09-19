@@ -1,5 +1,8 @@
 package tp2;
 
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 public class BinaryTree <T> {
 	
 	private T data;
@@ -75,11 +78,64 @@ public class BinaryTree <T> {
 	}
 
 	public  int contarHojas() {
-	   
-		return 0;
+		return leafCountRecursive(this, 0);
 	}
-		
-		
+	private int leafCountRecursive(BinaryTree<T> tree, int count) {
+		if (!tree.hasRightChild() && !tree.hasLeftChild())
+			return count + 1;
+		if (tree.hasLeftChild()) {
+			count = leafCountRecursive(tree.getLeftChild(), count);
+		}
+		if (tree.hasRightChild()) {
+			count = leafCountRecursive(tree.getRightChild(), count);
+		}
+		return count;
+	}
+
+	public void printLevelTraversal() {
+		Queue<BinaryTree<T>> queue = new ConcurrentLinkedQueue<>();
+		queue.add(this);
+		queue.add(new BinaryTree<>(null));
+		while (!queue.isEmpty()) {
+			BinaryTree<T> value = queue.poll();
+			if (value.getData() != null) {
+				System.out.print(value.getData().toString() + " ");
+				if (value.hasLeftChild()) queue.add(value.getLeftChild());
+				if (value.hasRightChild()) queue.add(value.getRightChild());
+			} else {
+				System.out.println("");
+				if (!queue.isEmpty()) queue.add(new BinaryTree<>(null));
+			}
+		}
+	}
+
+	public void preOrden() {
+		preOrdenRecursive(this);
+	}
+
+	public void inOrden() {
+		inOrdenRecursive(this);
+	}
+
+	public void postOrden() {
+		postOrdenRecursive(this);
+	}
+
+	private void preOrdenRecursive(BinaryTree<T> tree) {
+		System.out.println(tree.getData().toString());
+		if (tree.hasLeftChild()) preOrdenRecursive(tree.getLeftChild());
+		if (tree.hasRightChild()) preOrdenRecursive(tree.getRightChild());
+	}
+
+	private void inOrdenRecursive(BinaryTree<T> tree) {
+		if (tree.hasLeftChild()) inOrdenRecursive(tree.getLeftChild());
+		System.out.println(tree.getData().toString());
+		if (tree.hasRightChild()) inOrdenRecursive(tree.getRightChild());
+	}
+
+	private void postOrdenRecursive(BinaryTree<T> tree) {
+
+	}
     	 
     public BinaryTree<T> espejo(){
 		       		  

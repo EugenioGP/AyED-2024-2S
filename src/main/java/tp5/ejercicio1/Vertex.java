@@ -12,7 +12,7 @@ public interface Vertex<T> {
 	/**
 	 * Reemplaza el dato del vértice.
 	 * 
-	 * @param dato
+	 * @param data
 	 */
 	public void setData(T data);
 

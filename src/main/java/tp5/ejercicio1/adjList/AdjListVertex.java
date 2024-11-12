@@ -2,6 +2,7 @@ package tp5.ejercicio1.adjList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import tp5.ejercicio1.Edge;
 import tp5.ejercicio1.Vertex;
@@ -72,5 +73,30 @@ public class AdjListVertex<T> implements Vertex<T> {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// Check if the object is the same
+		if (this == obj) {
+			return true;
+		}
+
+		// Check if the object is an instance of AdjListVertex
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+
+		// Cast the object to AdjListVertex
+		AdjListVertex<?> other = (AdjListVertex<?>) obj;
+
+		// Compare the data of both vertices
+		return Objects.equals(this.data, other.data);
+	}
+
+	@Override
+	public int hashCode() {
+		// Generate hash code based on the data
+		return Objects.hash(data);
 	}
 }

@@ -12,6 +12,28 @@ import java.util.stream.Collectors;
 public class RecorridosTest {
 
     @Test
+    public void testSSS() {
+        int value = 2;
+        int val2 = 4;
+        int val3 = 5;
+        String s1 = "";
+        s1 = s1 + value;
+        s1 = s1 + val2;
+        s1 = s1 + val3;
+        int vaue = 5;
+        int va2 = 6;
+        int va3 = 1;
+        String s2 = "";
+        s2 = s2 + vaue;
+        s2 = s2 + va2;
+        s2 = s2 + va3;
+        int valueS = Integer.parseInt(s1);
+        int valueD = Integer.parseInt(s2);
+        int result = valueD + valueS;
+        System.out.println(result);
+    }
+
+    @Test
     public void testDFS() {
         Graph<String> graph = new AdjListGraph<>();
         graph.createVertex("A");
